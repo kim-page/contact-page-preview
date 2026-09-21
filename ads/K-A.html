@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=300, initial-scale=1">
+<title>K-A — Know this business?</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 300px; height: 300px; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #0b3d2e; color: #fff; display: flex; flex-direction: column; padding: 14px 14px 12px; }
+  .kicker { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7de3a8; margin-bottom: 4px; }
+  h1 { font-size: 19px; line-height: 1.25; font-weight: 700; margin-bottom: 2px; }
+  .sub { font-size: 11.5px; color: #c9e9d4; margin-bottom: 8px; }
+  .opts { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+  label.opt { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 8px; padding: 6px 9px; font-size: 12px; cursor: pointer; }
+  label.opt:has(input:checked) { background: #25d366; border-color: #25d366; color: #06281c; font-weight: 700; }
+  label.opt input { accent-color: #25d366; }
+  a.wa { display: block; text-align: center; background: #25d366; color: #06281c; font-weight: 800; font-size: 14px; text-decoration: none; border-radius: 10px; padding: 10px; margin-top: auto; }
+  a.wa.disabled { background: rgba(255,255,255,.18); color: #9fc3ad; pointer-events: none; }
+  .foot { font-size: 9.5px; color: #8fb89c; text-align: center; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="kicker">contact.page</div>
+  <h1>Know this business?</h1>
+  <div class="sub">Say something — anyone can. Pick who you are:</div>
+  <div class="opts" id="opts">
+    <label class="opt"><input type="radio" name="who" value="the owner"> I'm the owner</label>
+    <label class="opt"><input type="radio" name="who" value="a worker here"> I work here</label>
+    <label class="opt"><input type="radio" name="who" value="a customer"> I'm a customer</label>
+    <label class="opt"><input type="radio" name="who" value="a supplier"> I'm a supplier</label>
+    <label class="opt"><input type="radio" name="who" value="someone reporting something wrong"> Something's wrong</label>
+  </div>
+  <a class="wa disabled" id="wa" href="#">Open in WhatsApp</a>
+  <div class="foot">@newcustomers · your AI worker finds you new customers</div>
+<script>
+  var wa = document.getElementById('wa');
+  document.getElementById('opts').addEventListener('change', function (e) {
+    var who = e.target.value;
+    var text = "Hi, I'm " + who + " — about this business: ";
+    wa.href = "https://wa.me/15553949923?text=" + encodeURIComponent(text);
+    wa.classList.remove('disabled');
+  });
+</script>
+</body>
+</html>
